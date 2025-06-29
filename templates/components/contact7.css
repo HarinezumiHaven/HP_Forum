@@ -1,0 +1,146 @@
+.contact7-container1 {
+  display: flex;
+  position: relative;
+  align-items: flex-start;
+  flex-direction: column;
+}
+ 
+.contact7-max-width {
+  align-self: center;
+}
+ 
+.contact7-content1 {
+  width: 100%;
+  margin-bottom: var(--dl-layout-space-threeunits);
+  justify-content: center;
+}
+ 
+.contact7-content2 {
+  gap: var(--dl-layout-space-unit);
+  display: flex;
+  align-self: stretch;
+  align-items: center;
+  flex-direction: column;
+}
+ 
+.contact7-content3 {
+  width: 100%;
+  align-items: flex-start;
+  flex-direction: row;
+  justify-content: space-between;
+}
+ 
+.contact7-container2 {
+  gap: var(--dl-layout-space-oneandhalfunits);
+  flex: 1;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+ 
+.contact7-image1 {
+  object-fit: cover;
+}
+ 
+.contact7-text12 {
+  text-align: center;
+}
+ 
+.contact7-container3 {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+ 
+.contact7-container4 {
+  gap: var(--dl-layout-space-oneandhalfunits);
+  flex: 1;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+ 
+.contact7-image2 {
+  object-fit: cover;
+}
+ 
+.contact7-text14 {
+  text-align: center;
+}
+ 
+.contact7-container5 {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+ 
+.contact7-fragment1 {
+  display: contents;
+}
+ 
+.contact7-text16 {
+  display: inline-block;
+}
+ 
+.contact7-fragment2 {
+  display: contents;
+}
+ 
+.contact7-text17 {
+  display: inline-block;
+}
+ 
+.contact7-fragment3 {
+  display: contents;
+}
+ 
+.contact7-text18 {
+  display: inline-block;
+}
+ 
+.contact7-fragment4 {
+  display: contents;
+}
+ 
+.contact7-text19 {
+  display: inline-block;
+}
+ 
+.contact7-fragment5 {
+  display: contents;
+}
+ 
+.contact7-text20 {
+  display: inline-block;
+}
+ 
+.contact7-fragment6 {
+  display: contents;
+}
+ 
+.contact7-text21 {
+  display: inline-block;
+}
+ 
+@media(max-width: 991px) {
+  .contact7-content3 {
+    align-items: center;
+    flex-direction: column;
+  }
+}
+ 
+@media(max-width: 767px) {
+  .contact7-content1 {
+    gap: var(--dl-layout-space-oneandhalfunits);
+  }
+  .contact7-image1 {
+    width: 100%;
+  }
+  .contact7-image2 {
+    width: 100%;
+  }
+}
