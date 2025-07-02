@@ -17,6 +17,9 @@ class User(db.Model):
     is_active = db.Column(db.Boolean, default=True)
     last_login = db.Column(db.DateTime)
     
+    # Relationship with chat messages
+    messages = db.relationship('ChatMessage', backref='author', lazy='dynamic', cascade='all, delete-orphan')
+    
     def __init__(self, username, email, password):
         self.username = username
         self.email = email
@@ -144,3 +147,108 @@ class User(db.Model):
     def get_user_by_email(cls, email):
         """Повертає користувача за email"""
         return cls.query.filter_by(email=email.lower()).first()
+
+
+class ChatMessage(db.Model):
+    __tablename__ = 'chat_messages'
+    
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    content = db.Column(db.Text, nullable=False)
+    created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
+    is_deleted = db.Column(db.Boolean, default=False)
+    
+    def __init__(self, user_id, content):
+        self.user_id = user_id
+        self.content = content
+    
+    def __repr__(self):
+        return f'<ChatMessage {self.id} by User {self.user_id}>'
+    
+    def to_dict(self):
+        """Конвертує повідомлення в словник"""
+        return {
+            'id': self.id,
+            'user_id': self.user_id,
+            'username': self.author.username if self.author else 'Unknown',
+            'content': self.content,
+            'created_at': self.created_at.isoformat() if self.created_at else None,
+            'is_deleted': self.is_deleted
+        }
+    
+    def soft_delete(self):
+        """М'яке видалення повідомлення"""
+        self.is_deleted = True
+        db.session.commit()
+    
+    def restore(self):
+        """Відновлення видаленого повідомлення"""
+        self.is_deleted = False
+        db.session.commit()
+    
+    @classmethod
+    def create_message(cls, user_id, content):
+        """Створює нове повідомлення з валідацією"""
+        # Валідація контенту
+        if not content.strip():
+            raise ValueError('Message content cannot be empty')
+        
+        if len(content) > 500:
+            raise ValueError('Message content is too long (max 500 characters)')
+        
+        # Перевірка існування користувача
+        user = User.query.get(user_id)
+        if not user or not user.is_active:
+            raise ValueError('Invalid or inactive user')
+        
+        # Створення повідомлення
+        message = cls(
+            user_id=user_id,
+            content=content.strip()
+        )
+        
+        db.session.add(message)
+        db.session.commit()
+        
+        return message
+    
+    @classmethod
+    def get_recent_messages(cls, limit=50):
+        """Повертає останні повідомлення"""
+        return cls.query.filter_by(is_deleted=False)\
+                      .order_by(cls.created_at.desc())\
+                      .limit(limit)\
+                      .all()[::-1]  # Reverse to get chronological order
+    
+    @classmethod
+    def get_messages_by_user(cls, user_id, limit=50):
+        """Повертає повідомлення конкретного користувача"""
+        return cls.query.filter_by(user_id=user_id, is_deleted=False)\
+                      .order_by(cls.created_at.desc())\
+                      .limit(limit)\
+                      .all()
+    
+    @classmethod
+    def get_messages_after(cls, message_id):
+        """Повертає повідомлення після певного ID"""
+        return cls.query.filter(cls.id > message_id, cls.is_deleted == False)\
+                      .order_by(cls.created_at.asc())\
+                      .all()
+    
+    @classmethod
+    def search_messages(cls, query, limit=20):
+        """Пошук повідомлень за текстом"""
+        return cls.query.filter(
+            cls.content.contains(query),
+            cls.is_deleted == False
+        ).order_by(cls.created_at.desc()).limit(limit).all()
+    
+    @classmethod
+    def get_message_count_by_user(cls, user_id):
+        """Повертає кількість повідомлень користувача"""
+        return cls.query.filter_by(user_id=user_id, is_deleted=False).count()
+    
+    @classmethod
+    def get_total_message_count(cls):
+        """Повертає загальну кількість повідомлень"""
+        return cls.query.filter_by(is_deleted=False).count()

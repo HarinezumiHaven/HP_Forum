@@ -8,3 +8,4 @@ PyJWT
 python-dotenv
 eventlet
 gunicorn
+psycopg2-binary
