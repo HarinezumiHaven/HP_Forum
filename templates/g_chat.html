@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <title>Global Chat</title>
-    <meta property="og:title" content="Beloved Private Horse" />
+    <meta property="og:title" content="Harinezumi Forum" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta charset="utf-8" />
     <meta property="twitter:card" content="summary_large_image" />
@@ -460,9 +460,12 @@
       </div>
     </div>
 
-    <!-- Socket.IO з'єднання (додаємо окремо) -->
     <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
-    <script>
+
+    <!-- Підключення чату -->
+    <script type="module">
+      import { ChatApp } from "/static/js/g_chat.js";
+
       document.addEventListener('DOMContentLoaded', () => {
         const token = localStorage.getItem('token');
         const username = localStorage.getItem('username') || 'Guest' + Math.floor(Math.random() * 1000);
@@ -479,40 +482,26 @@
           }
         });
 
-        // отримуємо екземпляр ChatApp
-        const chat = window.__chatInstance || new ChatApp();
+        const chat = new ChatApp(socket);
         window.__chatInstance = chat;
 
-        // замінити тимчасове повідомлення на історію з сервера
         socket.on('recent_messages', (data) => {
           (data.messages || []).forEach(msg => {
             chat.receiveMessage({
-              id: msg.id,
               username: msg.username,
               content: msg.content,
-              timestamp: new Date(msg.created_at || msg.timestamp)
+              timestamp: msg.created_at || msg.timestamp
             });
           });
         });
 
         socket.on('receive_message', (msg) => {
           chat.receiveMessage({
-            id: msg.id,
             username: msg.username,
             content: msg.content,
-            timestamp: new Date(msg.timestamp)
+            timestamp: msg.timestamp
           });
         });
-
-        // перехоплюємо відправку
-        const origSendMessage = chat.sendMessage.bind(chat);
-        chat.sendMessage = () => {
-          const messageText = chat.messageInput.value.trim();
-          if (!messageText) return;
-
-          socket.emit('send_message', { message: messageText });
-          origSendMessage(); // зберігаємо поведінку
-        };
 
         socket.on('connect_error', (err) => {
           console.error('Socket.IO error:', err.message);

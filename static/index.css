@@ -1,112 +1,101 @@
 .banner1-wrapper {
-  display: contents;
+ display: contents;
 }
- 
 .banner1-container1 {
-  gap: var(--dl-layout-space-unit);
-  display: flex;
-  position: relative;
-  align-items: center;
+gap: var(--dl-layout-space-unit);
+display: flex;
+position: relative;
+align-items: center;
 }
- 
 .banner1-max-width {
-  gap: var(--dl-layout-space-oneandhalfunits);
-  display: flex;
-  align-items: center;
-  flex-direction: column;
+gap: var(--dl-layout-space-oneandhalfunits);
+display: flex;
+align-items: center;
+flex-direction: column;
 }
- 
 .banner1-container2 {
-  gap: var(--dl-layout-space-halfunit);
-  display: flex;
-  align-items: center;
-  flex-direction: column;
+gap: var(--dl-layout-space-halfunit);
+display: flex;
+align-items: center;
+flex-direction: column;
 }
- 
 .banner1-title {
-  text-align: center;
+text-align: center;
+color: white;
 }
- 
 .banner1-text1 {
-  text-align: center;
+text-align: center;
+color: white;
 }
- 
 .home-fragment1 {
-  display: contents;
+display: contents;
 }
- 
 .home-text10 {
-  display: inline-block;
+display: inline-block;
+color: white;
 }
- 
 .home-fragment2 {
-  display: contents;
+display: contents;
 }
- 
 .home-text11 {
-  display: inline-block;
+display: inline-block;
+color: white;
 }
- 
 .home-fragment3 {
-  display: contents;
+display: contents;
 }
- 
 .home-text12 {
-  display: inline-block;
+display: inline-block;
+color: white;
 }
-
 .home-container {
-  width: 100%;
-  display: flex;
-  min-height: 100vh;
-  align-items: center;
-  flex-direction: column;
+width: 100%;
+display: flex;
+min-height: 100vh;
+align-items: center;
+flex-direction: column;
 }
- 
 .home-fragment1 {
-  display: contents;
+display: contents;
 }
- 
 .home-text10 {
-  display: inline-block;
+display: inline-block;
+color: white;
 }
- 
 .home-fragment2 {
-  display: contents;
+display: contents;
 }
- 
 .home-text11 {
-  display: inline-block;
+display: inline-block;
+color: white;
 }
- 
 .home-fragment3 {
-  display: contents;
+display: contents;
 }
- 
 .home-text12 {
-  display: inline-block;
+display: inline-block;
+color: white;
 }
- 
 .home-separator {
-  width: 100%;
-  height: 1px;
-  background-color: #595959;
+width: 100%;
+height: 1px;
+background-color: #595959;
 }
- 
 .home-text13 {
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 900;
+font-size: 20px;
+font-style: normal;
+font-weight: 900;
+color: white;
 }
- 
 .home-text16 {
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 900;
+font-size: 20px;
+font-style: normal;
+font-weight: 900;
+color: white;
 }
- 
 .home-text19 {
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 900;
+font-size: 20px;
+font-style: normal;
+font-weight: 900;
+color: white;
 }

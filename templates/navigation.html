@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>404 - Not Found</title>
+    <title>Navigation - Beloved Private Horse</title>
+    <meta property="og:title" content="Navigation - Beloved Private Horse" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta charset="utf-8" />
     <meta property="twitter:card" content="summary_large_image" />
@@ -16,7 +17,7 @@
       }
 
       body {
-        font-weight: 900;
+        font-weight: 400;
         font-style:normal;
         text-decoration: none;
         text-transform: none;
@@ -24,7 +25,6 @@
         line-height: 1.15;
         color: var(--dl-color-theme-neutral-dark);
         background: var(--dl-color-theme-neutral-light);
-
         fill: var(--dl-color-theme-neutral-dark);
       }
     </style>
@@ -34,12 +34,12 @@
     />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&amp;display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
       data-tag="font"
     />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
+      href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&amp;display=swap"
       data-tag="font"
     />
     <link
@@ -51,23 +51,78 @@
       rel="stylesheet"
       href="https://unpkg.com/@teleporthq/teleport-custom-scripts/dist/style.css"
     />
+    <link href="../static/navigation.css" rel="stylesheet" />
+    <style>
+      [data-thq="thq-dropdown"]:hover > [data-thq="thq-dropdown-list"] {
+          display: flex;
+        }
+
+        [data-thq="thq-dropdown"]:hover > div [data-thq="thq-dropdown-arrow"] {
+          transform: rotate(90deg);
+        }
+    </style>
   </head>
   <body>
-    <link href="../static/style.css" rel="stylesheet" />
     <div>
-      <link href="../static/404.css" rel="stylesheet" />
+      <script
+        type="text/javascript"
+        src="https://github.com/teleporthq/date-time-primitive/blob/main/dist/default/lib.umd.js"
+      ></script>
 
-      <div class="not-found-container1">
-        <h3>OOPS! PAGE NOT FOUND</h3>
-        <div class="not-found-container2">
-          <h1 class="not-found-text2">404</h1>
-        </div>
-        <div class="not-found-container3">
-          <h2 class="not-found-text3">
-            WE ARE SORRY, BUT THE PAGE YOU REQUESTED WAS NOT FOUND
-          </h2>
-        </div>
+      <div class="navigation-container">
+        <span>
+          <date-time-primitive
+            format="DD/MM/YYYY"
+            date="Mon Jul 07 2025 20:15:16 GMT+0200 (Central European Summer Time)"
+          ></date-time-primitive>
+        </span>
+        <h1 class="navigation-text">Navigation</h1>
+        <hr class="navigation-separator" />
+        <button type="button" class="navigation-button1 button">
+          Global Chat
+        </button>
+        <button type="button" class="navigation-button2 button">
+          GitHub Profiles
+        </button>
       </div>
     </div>
+    <script>
+      // Функція для перевірки автентифікації
+      function checkAuth() {
+        const token = localStorage.getItem('token');
+        if (!token) {
+          window.location.href = '/login';
+          return false;
+        }
+        return true;
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        // Перевіряємо автентифікацію при завантаженні сторінки
+        if (!checkAuth()) {
+          return;
+        }
+
+        const globalChatBtn = document.querySelector('.navigation-button1');
+        const githubProfilesBtn = document.querySelector('.navigation-button2');
+
+        if (globalChatBtn) {
+          globalChatBtn.addEventListener('click', () => {
+            if (checkAuth()) {
+              window.location.href = '/g_chat';
+            }
+          });
+        }
+
+        if (githubProfilesBtn) {
+          githubProfilesBtn.addEventListener('click', () => {
+            if (checkAuth()) {
+              // Додайте тут посилання на GitHub Profiles сторінку
+              console.log('GitHub Profiles clicked');
+            }
+          });
+        }
+      });
+    </script>
   </body>
 </html>

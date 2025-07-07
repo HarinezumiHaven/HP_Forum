@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Login - Tall Classic Deer</title>
-    <meta property="og:title" content="Login - Tall Classic Deer" />
+    <title>Login - Harinezumi Forum</title>
+    <meta property="og:title" content="Login - Harinezumi Forum" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta charset="utf-8" />
     <meta property="twitter:card" content="summary_large_image" />
@@ -328,9 +328,9 @@
           
           if (response.ok) {
             alert('Login successful!');
-            // Redirect or handle successful login
+
             localStorage.setItem('token', result.token);
-            window.location.href = '/dashboard'; // or wherever you want to redirect
+            window.location.href = '/navigation'; 
           } else {
             alert('Login failed: ' + result.message);
           }

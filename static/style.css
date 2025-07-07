@@ -33,30 +33,30 @@
 }
  
 .button {
-  color: var(--dl-color-theme-neutral-dark);
+  color: #FFFFFF;
   display: inline-block;
   padding: 0.5rem 1rem;
-  border-color: var(--dl-color-theme-neutral-dark);
+  border-color: #FFFFFF;
   border-width: 1px;
   border-radius: 4px;
   background-color: var(--dl-color-theme-neutral-light);
 }
  
 .input {
-  color: var(--dl-color-theme-neutral-dark);
+  color: #FFFFFF;
   cursor: auto;
   padding: 0.5rem 1rem;
-  border-color: var(--dl-color-theme-neutral-dark);
+  border-color: #FFFFFF;
   border-width: 1px;
   border-radius: 4px;
   background-color: var(--dl-color-theme-neutral-light);
 }
  
 .textarea {
-  color: var(--dl-color-theme-neutral-dark);
+  color: #FFFFFF;
   cursor: auto;
   padding: 0.5rem;
-  border-color: var(--dl-color-theme-neutral-dark);
+  border-color: #FFFFFF;
   border-width: 1px;
   border-radius: 4px;
   background-color: var(--dl-color-theme-neutral-light);
@@ -81,13 +81,13 @@
 }
  
 .thq-input {
-  color: var(--dl-color-theme-neutral-dark);
+  color: #FFFFFF;
   cursor: auto;
   outline: none;
   padding: 0.5rem 1rem;
   align-self: stretch;
   text-align: center;
-  border-color: var(--dl-color-theme-neutral-dark);
+  border-color: #FFFFFF;
   border-width: 1px;
   border-radius: var(--dl-layout-radius-inputradius);
   background-color: var(--dl-color-theme-neutral-light);
@@ -184,6 +184,7 @@
   font-family: STIX Two Text;
   font-weight: 700;
   line-height: 1.5;
+  color: #FFFFFF;
 }
  
 .thq-heading-2 {
@@ -191,6 +192,7 @@
   font-family: STIX Two Text;
   font-weight: 600;
   line-height: 1.5;
+  color: #FFFFFF;
 }
  
 .thq-heading-3 {
@@ -198,18 +200,21 @@
   font-family: STIX Two Text;
   font-weight: 600;
   line-height: 1.5;
+  color: #FFFFFF;
 }
  
 .thq-body-large {
   font-size: 18px;
   font-family: Noto Sans;
   line-height: 1.5;
+  color: #FFFFFF;
 }
  
 .thq-body-small {
   font-size: 16px;
   font-family: Noto Sans;
   line-height: 1.5;
+  color: #FFFFFF;
 }
  
 .thq-team-image-round {
@@ -305,7 +310,7 @@
 }
  
 .thq-box-shadow {
-  box-shadow: 0px 0px 5px -2px var(--dl-color-theme-neutral-dark);
+  box-shadow: 0px 0px 5px -2px #FFFFFF;
 }
  
 .thq-grid-3 {
@@ -341,7 +346,8 @@
   padding-right: var(--dl-layout-space-twounits);
   padding-bottom: var(--dl-layout-space-halfunit);
   background-color: var(--dl-color-theme-neutral-light);
-  background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg width%3D%2220%22 height%3D%2220%22 xmlns%3D%22http%3A//www.w3.org/2000/svg%22 viewBox%3D%220 0 20 20%22 fill%3D%22%23000%22%3E%3Cpath d%3D%22M4.293 7.293a1 1 0 011.414 0L10 11.586l4.293-4.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 010-1.414z%22/%3E%3C/svg%3E');
+  color: #FFFFFF;
+  background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg width%3D%2220%22 height%3D%2220%22 xmlns%3D%22http%3A//www.w3.org/2000/svg%22 viewBox%3D%220 0 20 20%22 fill%3D%22%23FFFFFF%22%3E%3Cpath d%3D%22M4.293 7.293a1 1 0 011.414 0L10 11.586l4.293-4.293a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 010-1.414z%22/%3E%3C/svg%3E');
   background-repeat: no-repeat;
   background-position: right 8px center;
 }
@@ -349,7 +355,7 @@
 .thq-divider-horizontal {
   width: 100%;
   height: 1px;
-  background-color: var(--dl-color-theme-neutral-dark);
+  background-color: #FFFFFF;
 }
  
 .thq-icon-small {
@@ -382,7 +388,7 @@
   cursor: pointer;
   display: inline-block;
   overflow: hidden;
-  background: linear-gradient(to right, var(--dl-color-theme-primary1) 50%, var(--dl-color-theme-neutral-dark) 50%);
+  background: linear-gradient(to right, var(--dl-color-theme-primary1) 50%, #FFFFFF 50%);
   transition: background-position 300ms ease;
   font-weight: 600;
   background-clip: text;
@@ -497,6 +503,7 @@
 .thq-input::placeholder {
   text-align: center;
   vertical-align: middle;
+  color: #FFFFFF;
 }
  
 .thq-animated-group-container-vertical:hover div {
@@ -545,6 +552,7 @@
   line-height: 1.15;
   text-transform: none;
   text-decoration: none;
+  color: #FFFFFF;
 }
  
 @media(max-width: 991px) {

@@ -80,7 +80,7 @@ def verify_socket_token(token):
         logger.error(f"Socket token verification error: {str(e)}")
         return None
 
-# Routes
+# Pages
 
 @app.route('/', methods=['GET'])
 def home_page():
@@ -90,18 +90,22 @@ def home_page():
 def login_page():
     return render_template("login.html")
 
+@app.route('/navigation', methods=['GET'])
+def navigation_page():
+    return render_template("navigation.html")
+
 @app.route('/g_chat', methods=['GET'])
 def g_chat_page():
     return render_template("g_chat.html")
 
-# API Routes
+# API 
 
 @app.route('/api/register', methods=['POST'])
 def register():
     try:
         data = request.get_json()
         
-        # Validate input
+
         if not data.get('username') or not data.get('email') or not data.get('password'):
             return jsonify({'message': 'Username, email, and password are required'}), 400
         
@@ -109,14 +113,14 @@ def register():
         email = data['email'].strip().lower()
         password = data['password']
         
-        # Additional validation
+
         if len(username) < 3 or len(username) > 80:
             return jsonify({'message': 'Username must be between 3 and 80 characters'}), 400
         
         if len(password) < 6:
             return jsonify({'message': 'Password must be at least 6 characters long'}), 400
         
-        # Create new user using class method
+        # create new abuser
         new_user = User.create_user(username, email, password)
         
         logger.info(f"New user registered: {username}")
@@ -144,13 +148,12 @@ def login():
         email = data['email'].strip().lower()
         password = data['password']
         
-        # Authenticate user
+        # check user data
         user = User.authenticate(email, password)
         
         if not user:
             return jsonify({'message': 'Invalid email or password'}), 401
         
-        # Generate token
         token = user.generate_token()
         
         logger.info(f"User logged in: {user.username}")
@@ -181,7 +184,7 @@ def update_profile(current_user):
             if len(username) < 3 or len(username) > 80:
                 return jsonify({'message': 'Username must be between 3 and 80 characters'}), 400
             
-            # Check if username is taken by another user
+            # unic username?
             existing_user = User.get_user_by_username(username)
             if existing_user and existing_user.id != current_user.id:
                 return jsonify({'message': 'Username already exists'}), 400
@@ -191,7 +194,7 @@ def update_profile(current_user):
         if 'email' in data:
             email = data['email'].strip().lower()
             
-            # Check if email is taken by another user
+            # unic email?
             existing_user = User.get_user_by_email(email)
             if existing_user and existing_user.id != current_user.id:
                 return jsonify({'message': 'Email already exists'}), 400
@@ -224,15 +227,15 @@ def change_password(current_user):
         current_password = data['current_password']
         new_password = data['new_password']
         
-        # Verify current password
+        # check current password
         if not current_user.check_password(current_password):
             return jsonify({'message': 'Current password is incorrect'}), 400
         
-        # Validate new password
+        # create new password
         if len(new_password) < 6:
             return jsonify({'message': 'New password must be at least 6 characters long'}), 400
         
-        # Update password using model method
+        # update password
         current_user.set_password(new_password)
         db.session.commit()
         
@@ -265,7 +268,7 @@ def get_messages(current_user):
     """Get recent chat messages"""
     try:
         limit = request.args.get('limit', 50, type=int)
-        if limit > 100:  # Limit to prevent overload
+        if limit > 100:
             limit = 100
         
         messages = ChatMessage.get_recent_messages(limit)
@@ -288,13 +291,13 @@ def delete_message(current_user, message_id):
         if not message:
             return jsonify({'message': 'Message not found'}), 404
         
-        # Only allow user to delete their own messages
+        # delete own msgs
         if message.user_id != current_user.id:
             return jsonify({'message': 'You can only delete your own messages'}), 403
         
         message.soft_delete()
         
-        # Notify all clients about message deletion
+        # notify all clients about message deletion
         socketio.emit('message_deleted', {
             'message_id': message_id,
             'deleted_by': current_user.username
