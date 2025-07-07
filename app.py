@@ -11,6 +11,8 @@ import logging
 # Import models and config
 from models import db, User, ChatMessage
 from config import config
+from dotenv import load_dotenv
+load_dotenv() 
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
